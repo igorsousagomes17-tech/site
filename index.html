@@ -61,12 +61,18 @@ section{padding:72px 0}
 @media(min-width:860px){.passos{grid-template-columns:repeat(3,1fr)}.passo{flex-direction:column}}
 .destaque{margin-top:22px;border-left:4px solid var(--accent);padding:6px 0 6px 16px;font-size:1.15rem;font-weight:600}
 /* app */
-.telas{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:8px 20px 20px;margin:28px -20px 0;scrollbar-width:none}
+.telas{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:12px 20px 8px;margin:32px -20px 0;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .telas::-webkit-scrollbar{display:none}
-.tela{flex:0 0 220px;scroll-snap-align:center}
-.tela .cel{border-radius:30px;border:6px solid #26262a;overflow:hidden;box-shadow:0 20px 40px rgba(0,0,0,.5);background:#000}
-.tela p{margin-top:12px;font-weight:600;font-size:.95rem}.tela p span{display:block;font-weight:400;color:var(--muted);font-size:.875rem}
-@media(min-width:1000px){.telas{justify-content:center;overflow:visible}}
+.tela{flex:0 0 68%;max-width:250px;scroll-snap-align:center;text-align:center}
+.cel{position:relative;aspect-ratio:585/1266;border-radius:34px;padding:7px;background:linear-gradient(160deg,#3a3a40,#17171a 45%,#2a2a2f);box-shadow:0 0 0 1px #000,0 24px 50px rgba(0,0,0,.55),0 0 60px rgba(255,106,0,.08)}
+
+.cel img{width:100%;height:100%;object-fit:cover;object-position:top;border-radius:28px;background:#000}
+.tela p{margin-top:16px;font-weight:700;font-size:1rem;line-height:1.3}
+.tela p span{display:block;margin-top:2px;font-weight:400;color:var(--muted);font-size:.9rem}
+.pontos{display:flex;justify-content:center;gap:8px;margin-top:18px}
+.pontos button{width:8px;height:8px;border-radius:99px;border:0;padding:0;background:#3a3a40;cursor:pointer;transition:width .25s,background .25s}
+.pontos button[aria-current=true]{width:24px;background:var(--accent)}
+@media(min-width:760px){.telas{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;overflow:visible;margin:40px 0 0;padding:0}.tela{max-width:none}.tela:nth-child(even){transform:translateY(28px)}.pontos{display:none}#app .wrap{padding-bottom:28px}}
 /* diferenciais */
 .dif{display:grid;gap:12px;margin-top:28px}
 .d{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px 18px 18px 64px;position:relative}
@@ -162,6 +168,7 @@ footer a{color:var(--fg)}
     <div class="tela"><div class="cel"><img src="img/app-resumo.webp" alt="Resumo da semana com treinos e cargas que subiram" loading="lazy" width="585" height="1266"></div><p>Resumo da semana<span>Pra ver (e postar) a sua evolução.</span></p></div>
     <div class="tela"><div class="cel"><img src="img/app-time.webp" alt="Ranking do mês do time" loading="lazy" width="585" height="1266"></div><p>O time<span>Você não treina sozinha.</span></p></div>
   </div>
+  <div class="pontos" aria-label="Telas do app"></div>
 </div></section>
 
 <section id="diferenciais"><div class="wrap">
@@ -269,6 +276,12 @@ const fixo = document.getElementById('fixo'), alvos = [document.getElementById('
 const vis = new Set();
 new IntersectionObserver(es => { es.forEach(e => e.isIntersecting ? vis.add(e.target) : vis.delete(e.target)); fixo.classList.toggle('esconde', vis.size > 0); }, { threshold: 0.15 }).observe(alvos[0]);
 const io2 = new IntersectionObserver(es => { es.forEach(e => e.isIntersecting ? vis.add(e.target) : vis.delete(e.target)); fixo.classList.toggle('esconde', vis.size > 0); }, { threshold: 0.15 }); io2.observe(alvos[1]);
+</script>
+<script>
+(function(){var t=document.querySelector('.telas'),p=document.querySelector('.pontos');if(!t||!p)return;var c=[].slice.call(t.children);
+c.forEach(function(el,i){var b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Tela '+(i+1));b.onclick=function(){t.scrollTo({left:el.offsetLeft-(t.clientWidth-el.clientWidth)/2,behavior:'smooth'})};p.appendChild(b)});
+function upd(){var m=t.scrollLeft+t.clientWidth/2,k=0,d=1e9;c.forEach(function(el,i){var x=Math.abs(el.offsetLeft+el.clientWidth/2-m);if(x<d){d=x;k=i}});[].forEach.call(p.children,function(b,i){b.setAttribute('aria-current',i===k)})}
+t.addEventListener('scroll',upd,{passive:true});upd()})();
 </script>
 </body>
 </html>
