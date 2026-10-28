@@ -131,7 +131,7 @@ footer a{color:var(--fg)}
 .bf{background:#000;border-block:1px solid var(--line);position:relative;overflow:hidden}
 .bf::before{content:"";position:absolute;inset:0;background:radial-gradient(70% 60% at 100% 0%,rgba(255,106,0,.35),transparent 60%),radial-gradient(60% 50% at 0% 100%,rgba(255,106,0,.18),transparent 60%);pointer-events:none}
 .bf .wrap{position:relative;display:grid;gap:28px;align-items:center}
-@media(min-width:860px){.bf .wrap{grid-template-columns:1fr 1fr}}
+@media(min-width:860px){.bf .wrap{grid-template-columns:1fr 1fr}.bf .planos{grid-template-columns:repeat(3,1fr)}}
 .bf h2{font-size:clamp(2.6rem,11vw,4.4rem)}
 .bf .lead{margin:14px 0 18px;font-size:1.1rem}
 .cont{display:flex;gap:8px;margin-top:6px}
@@ -152,7 +152,7 @@ footer a{color:var(--fg)}
 </style>
 </head>
 <body>
-<a class="bf-top" href="#black"><b>BLACK</b> Lista VIP aberta · entre e receba a oferta primeiro</a>
+<a class="bf-top" href="#black"><b>BLACK</b> Pague o plano e ganhe o DOBRO de tempo · vagas limitadas</a>
 <header class="bar"><div class="wrap"><div class="logo">IGOR SOUSA <b>TEAM</b></div><a class="mini wa-link" href="#planos">Quero entrar</a></div></header>
 
 <main>
@@ -167,21 +167,21 @@ footer a{color:var(--fg)}
   <div class="igor"><img src="img/igor.webp" alt="Igor Sousa, personal trainer" width="640" height="640"><div class="selo"><b>+1.000</b>pessoas já treinaram comigo</div></div>
 </div></section>
 
-<section class="bf" id="black"><div class="wrap">
+<section class="bf" id="black"><div class="wrap" style="grid-template-columns:1fr">
   <div>
-    <span class="tag">Black Friday · 27 de novembro</span>
-    <h2>A Black do time <b>vem aí.</b></h2>
-    <p class="lead">Vai ser a <strong>melhor condição do ano</strong> pra treinar comigo, com vagas limitadas. Quem está na lista recebe a oferta <strong>primeiro, direto no WhatsApp</strong>, antes de abrir pra todo mundo.</p>
-    <div class="cont" id="cont" aria-label="Contagem regressiva pra Black Friday"><div><b id="cd-d">--</b><span>dias</span></div><div><b id="cd-h">--</b><span>horas</span></div><div><b id="cd-m">--</b><span>min</span></div><div><b id="cd-s">--</b><span>seg</span></div></div>
+    <span class="tag">Black Friday · Personalizado</span>
+    <h2>Pague o plano, <b>leve o dobro.</b></h2>
+    <p class="lead">Só na Black: treino 100% seu, comigo de perto, com o <strong>dobro do tempo de acesso</strong>. Vagas limitadas, porque eu acompanho cada aluna.</p>
   </div>
-  <form class="form-bf" id="form-bf" novalidate>
-    <label>Seu nome<input name="nome" autocomplete="given-name" required maxlength="80" placeholder="Como posso te chamar?"></label>
-    <label>WhatsApp<input name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" required placeholder="(62) 9 9999-9999"></label>
-    <label>E-mail<input name="email" type="email" inputmode="email" autocomplete="email" required maxlength="120" placeholder="seuemail@gmail.com"></label>
-    <p class="erro" id="bf-erro" role="alert"></p>
-    <button class="btn" type="submit">Quero entrar na lista</button>
-    <small>Sem spam. Só te chamo pra mandar a oferta da Black.</small>
-  </form>
+  <div class="planos" style="margin-top:0">
+    <div class="plano"><span class="rot">Trimestral</span><div class="preco">R$ 250<small> · 6 meses</small></div><p class="muted" style="margin-top:-8px">De 3 por 6 meses. Sai uns R$ 42 por mês.</p>
+      <a class="btn" href="https://pay.kiwify.com.br/Bc6t8Bo" target="_blank" rel="noopener">Quero 6 meses</a></div>
+    <div class="plano top"><span class="rot">Semestral · mais escolhido</span><div class="preco">R$ 450<small> · 12 meses</small></div><p class="muted" style="margin-top:-8px">De 6 por 12 meses. Sai R$ 37,50 por mês.</p>
+      <a class="btn" href="https://pay.kiwify.com.br/dez4xti" target="_blank" rel="noopener">Quero 12 meses</a></div>
+    <div class="plano"><span class="rot">Anual</span><div class="preco">R$ 800<small> · 24 meses</small></div><p class="muted" style="margin-top:-8px">De 12 por 24 meses. Sai uns R$ 33 por mês.</p>
+      <a class="btn" href="https://pay.kiwify.com.br/3C0a98X" target="_blank" rel="noopener">Quero 24 meses</a></div>
+  </div>
+  <div class="seguro" style="margin-top:0"><span>Cartão em até 12x ou Pix</span><span>7 dias de garantia</span><span>Acesso no WhatsApp logo após o pagamento</span></div>
 </div></section>
 
 <div class="faixa" aria-hidden="true"><div>
@@ -339,32 +339,6 @@ const io2 = new IntersectionObserver(es => { es.forEach(e => e.isIntersecting ? 
 c.forEach(function(el,i){var b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Tela '+(i+1));b.onclick=function(){t.scrollTo({left:el.offsetLeft-(t.clientWidth-el.clientWidth)/2,behavior:'smooth'})};p.appendChild(b)});
 function upd(){var m=t.scrollLeft+t.clientWidth/2,k=0,d=1e9;c.forEach(function(el,i){var x=Math.abs(el.offsetLeft+el.clientWidth/2-m);if(x<d){d=x;k=i}});[].forEach.call(p.children,function(b,i){b.setAttribute('aria-current',i===k)})}
 t.addEventListener('scroll',upd,{passive:true});upd()})();
-</script>
-<script>
-// ===== Black Friday: contagem + lista VIP (salva no Supabase do app, tabela lista_black) =====
-(function(){
-  const SB_URL='https://wwajmwrtobowmheadssv.supabase.co', SB_KEY='sb_publishable_jomZTtZm0CKmNYtAd9DT7Q_pE3uqRmz';
-  const alvo=new Date('2026-11-27T00:00:00-03:00').getTime(), z=n=>String(n).padStart(2,'0');
-  function tick(){let r=Math.max(0,alvo-Date.now())/1000;
-    document.getElementById('cd-d').textContent=z(Math.floor(r/86400));document.getElementById('cd-h').textContent=z(Math.floor(r%86400/3600));
-    document.getElementById('cd-m').textContent=z(Math.floor(r%3600/60));document.getElementById('cd-s').textContent=z(Math.floor(r%60));}
-  tick();setInterval(tick,1000);
-  const f=document.getElementById('form-bf'),erro=document.getElementById('bf-erro'),tel=f.whatsapp;
-  tel.addEventListener('input',()=>{let d=tel.value.replace(/\D/g,'').slice(0,11);
-    tel.value=d.length>6?`(${d.slice(0,2)}) ${d.slice(2,d.length-4)}-${d.slice(-4)}`:d.length>2?`(${d.slice(0,2)}) ${d.slice(2)}`:d;});
-  f.addEventListener('submit',async e=>{e.preventDefault();erro.textContent='';
-    const nome=f.nome.value.trim(),email=f.email.value.trim().toLowerCase();let w=f.whatsapp.value.replace(/\D/g,'');
-    if(nome.length<2)return erro.textContent='Coloca seu nome 🙂';
-    if(w.length<10||w.length>11)return erro.textContent='Confere o WhatsApp com DDD.';
-    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email))return erro.textContent='Confere o e-mail.';
-    w='55'+w;const b=f.querySelector('button');b.disabled=true;b.textContent='Enviando...';
-    try{const r=await fetch(SB_URL+'/rest/v1/lista_black',{method:'POST',headers:{apikey:SB_KEY,Authorization:'Bearer '+SB_KEY,'Content-Type':'application/json',Prefer:'return=minimal'},
-        body:JSON.stringify({nome,whatsapp:w,email,origem:new URLSearchParams(location.search).get('utm_source')||'site'})});
-      if(!r.ok&&r.status!==409)throw new Error(r.status);
-      f.innerHTML='<div class="ok-bf"><b>Você tá na lista! 🧡</b><p>No dia 27/11 eu te chamo no WhatsApp com a oferta, antes de todo mundo. Fica de olho!</p></div>';
-    }catch(_){b.disabled=false;b.textContent='Quero entrar na lista';erro.textContent='Não consegui salvar agora. Tenta de novo em instantes.';}
-  });
-})();
 </script>
 </body>
 </html>
